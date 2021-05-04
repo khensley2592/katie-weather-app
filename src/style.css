@@ -1,0 +1,46 @@
+h1 {
+  text-align: left;
+  color: grey;
+  font-size: 40px;
+}
+h3 {
+  text-align: left;
+  color: green;
+  font-size: 70px;
+}
+.fa-sun {
+  font-size: 70px;
+  color: yellow;
+}
+form {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 0 0 0;
+}
+.forecast {
+  font-size: 25px;
+  padding: 35px 0 25px 0;
+  text-align: left;
+}
+.justify-content-center {
+  margin: auto;
+  border: solid 2px;
+  border-color: gray;
+  border-radius: 20px;
+  max-width: 700px;
+}
+.col-4 {
+  padding: 20px 0 20px 0;
+}
+.temp {
+  font-size: 60px;
+  color: hotpink;
+  font-weight: 600;
+}
+.units {
+  position: relative;
+  top: -32px;
+}
+.current {
+  text-transform: capitalize;
+}
