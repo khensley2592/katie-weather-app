@@ -4,7 +4,6 @@
     <title>SCP Weather App</title>
     <meta charset="UTF-8" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link href="src/style.css" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
@@ -21,15 +20,14 @@
   </head>
 
   <body>
-    <div class="container"></div>
+    <div class="container">
+      <div class="wrapper">
       <div class="row justify-content-center">
         <div class="col-4">
           <h1>City</h1>
-          <h2 class=date>
-            Date and Time
+          <h2 class="date">
           </h2>
           <div id="current">
-            Current weather
           </div>
           <span class="temp" id="temperature"></span
           ><span class="units">
@@ -37,13 +35,13 @@
             <a href="#" id="fahrenheit-link">°F</a>
           </span>
           <div>
-            <i class="fas fa-sun"></i>
+             <img src="" alt="Clear" id="icon"/>
           </div>
           <br />
           <p>
-            Precipitation %
+            Humidity: <span id="humidity"></span>%
             <br />
-            Wind MPH
+            Wind: <span id="wind"></span> MPH
           </p>
         </div>
         <div class="col-4">
@@ -69,12 +67,13 @@
             Friday <i class="fas fa-cloud-sun"></i>
           </p>
         </div>
-         <p class="link">
+        </div>
+         <small>
     <a href="https://github.com/khensley2592/katie-weather-app" target="_blank">
-    Open-source code
+    Open-source code 
     </a>
   by Katie Hensley
-  </p>
+  </small>
     <script src="src/script.js"></script>
   </body>
 </html>

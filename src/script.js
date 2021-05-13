@@ -1,21 +1,26 @@
-let now = new Date();
-let h2 = document.querySelector("h2");
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
 
-let hours = now.getHours();
-let minutes = now.getMinutes();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
-let day = days[now.getDay()];
-
-h2.innerHTML = `${day} ${hours}:${minutes}`;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
+}
 
 function convertToFahrenheit(event) {
   event.preventDefault();
@@ -43,7 +48,7 @@ function search(event) {
   if (cityInput.value) {
     cityElement.innerHTML = `${cityInput.value}`;
     let city = cityInput.value;
-    let units = "imperial";
+    let units = "metric";
     let apiKey = "a4274e99abef8206a6b90c500ed8b868";
     let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
     let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
@@ -58,12 +63,24 @@ let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", search);
 
 function showWeather(response) {
+  let dateElement = document.querySelector("h2");
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
   let temperature = Math.round(response.data.main.temp);
   let tempElement = document.querySelector("#temperature");
   tempElement.innerHTML = `${temperature}`;
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 
   let skyDescription = document.querySelector("#current");
   skyDescription.innerHTML = response.data.weather[0].description;
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = response.data.main.humidity;
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = response.data.wind.speed;
 }
 
 function geoTemperature(response) {
