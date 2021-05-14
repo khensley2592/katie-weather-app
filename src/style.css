@@ -51,6 +51,15 @@ form {
   position: relative;
   top: -32px;
 }
+
+.units .active {
+  color: black;
+  cursor: default;
+}
+
+.units .active:hover {
+  text-decoration: none;
+}
 .current {
   text-transform: capitalize;
 }

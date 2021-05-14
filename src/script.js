@@ -24,15 +24,22 @@ function formatDate(timestamp) {
 
 function convertToFahrenheit(event) {
   event.preventDefault();
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = 55;
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = 12;
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
 }
+
+let celsiusTemperature = null;
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", convertToFahrenheit);
@@ -75,6 +82,8 @@ function showWeather(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
+  celsiusTemperature = response.data.main.temp;
+
   let skyDescription = document.querySelector("#current");
   skyDescription.innerHTML = response.data.weather[0].description;
   let humidityElement = document.querySelector("#humidity");
@@ -83,21 +92,4 @@ function showWeather(response) {
   windElement.innerHTML = response.data.wind.speed;
 }
 
-function geoTemperature(response) {
-  let geoTemp = Math.round(response.data.main.temp);
-  let geoData = document.querySelector("#temperature");
-  geoData.innerHTML = `${geoTemp}`;
-}
-
-function showPosition(position) {
-  let lat = position.coords.latitude;
-  let long = position.coords.longitude;
-  let units = "imperial";
-  let apiKey = "a4274e99abef8206a6b90c500ed8b868";
-  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-  let apiUrlGeo = `${apiEndpoint}?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
-
-  axios.get(apiUrlGeo).then(geoTemperature);
-}
-
-navigator.geolocation.getCurrentPosition(showPosition);
+search("Denver");

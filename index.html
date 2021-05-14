@@ -29,9 +29,10 @@
           </h2>
           <div id="current">
           </div>
-          <span class="temp" id="temperature"></span
-          ><span class="units">
-            <a href="#" id="celsius-link">°C</a> |
+          <span class="temp" id="temperature">
+            </span>
+            <span class="units">
+            <a href="#" id="celsius-link" class="active">°C</a> |
             <a href="#" id="fahrenheit-link">°F</a>
           </span>
           <div>
@@ -41,19 +42,23 @@
           <p>
             Humidity: <span id="humidity"></span>%
             <br />
-            Wind: <span id="wind"></span> MPH
+            Wind: <span id="wind"></span> km/h
           </p>
         </div>
         <div class="col-4">
           <form id = "search-form">
            <input
-           type="text"
+           type="search"
            placeholder="Enter a city"
            autocomplete="off"
-           autofocus="on"
+           autofocus="on"i
            id="search-text-input"
+           class="form-control"
            />
-           <input type="submit" value="Search" />
+           <input 
+           type="submit" 
+           value="Search"
+           class="btn btn-primary w-50" />
           </form>
           <br />
           <p class="forecast">
