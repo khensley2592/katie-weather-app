@@ -54,16 +54,17 @@ function search(event) {
   cityElement.innerHTML = cityInput.value;
   if (cityInput.value) {
     cityElement.innerHTML = `${cityInput.value}`;
-    let city = cityInput.value;
-    let units = "metric";
-    let apiKey = "a4274e99abef8206a6b90c500ed8b868";
-    let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-    let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
-
-    axios.get(apiUrl).then(showWeather);
+    searchCity(cityInput.value);
   } else {
     cityElement.innerHTML = null;
   }
+}
+function searchCity(city) {
+  let units = "metric";
+  let apiKey = "a4274e99abef8206a6b90c500ed8b868";
+  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
+  let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showWeather);
 }
 
 let searchForm = document.querySelector("#search-form");
@@ -118,6 +119,7 @@ function showWeather(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = response.data.wind.speed;
+  document.querySelector("h1").value = response.data.name;
 }
 
-search("Denver");
+searchCity("Denver");
